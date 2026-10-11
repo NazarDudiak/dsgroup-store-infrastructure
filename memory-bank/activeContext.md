@@ -10,6 +10,7 @@ Completed in the current development cycle:
 - Production-safe Django configuration guards and health endpoint.
 - Local launcher now preserves manual catalogue edits by not reseeding existing databases.
 - Demo catalogue was professionally revised so each of the 11 visible subcategories has an actual product model and model-specific image references. Generic stock photos were removed from published products.
+- A ready-to-paste, non-destructive bootstrap prompt for a second Mac is maintained in `FRIEND_CODEX_PROMPT.md`.
 
 Next decisions requiring the owner:
 

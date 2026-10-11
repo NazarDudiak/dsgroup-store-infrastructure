@@ -31,3 +31,7 @@ The older `toggle_store.sh` and `store-launchd` files remain available for Apple
 ## Shared project memory
 
 The living cross-repository context is in [`memory-bank/`](./memory-bank/). Before changing catalogue, checkout, configuration or deployment behavior, read it; update `activeContext.md` and append to `progress.md` when a meaningful milestone is complete.
+
+## Copying the project to another Mac
+
+Send [`FRIEND_CODEX_PROMPT.md`](./FRIEND_CODEX_PROMPT.md) to the other developer. It is a ready-to-paste instruction for their Codex and starts a local copy without touching GitHub.
