@@ -15,3 +15,4 @@ Next decisions requiring the owner:
 1. Select payment, delivery, email/SMS and analytics providers.
 2. Provide domain, production hostnames and a secrets manager/deployment target.
 3. Replace sample external images with licensed assets uploaded to managed storage.
+4. Add GitHub Actions workflows after granting the publishing token the GitHub `workflow` scope. The current token cannot create `.github/workflows/*`, so CI configuration was intentionally not pushed.
