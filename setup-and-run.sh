@@ -5,6 +5,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 BACKEND_PORT=8000
 FRONTEND_PORT=3000
+SEED_DEMO=false
+if [ "${1:-}" = "--seed-demo" ]; then SEED_DEMO=true; fi
 
 find_project_dir() {
   local configured="$1" clone_name="$2" local_name="$3"
@@ -30,7 +32,15 @@ if [ ! -x "$BACKEND_DIR/.venv/bin/python" ]; then python3 -m venv "$BACKEND_DIR/
 "$BACKEND_DIR/.venv/bin/python" -m pip install --upgrade pip >/dev/null
 "$BACKEND_DIR/.venv/bin/python" -m pip install -r "$BACKEND_DIR/requirements.txt"
 if [ ! -f "$BACKEND_DIR/.env" ]; then cp "$BACKEND_DIR/.env.example" "$BACKEND_DIR/.env"; fi
-(cd "$BACKEND_DIR" && .venv/bin/python manage.py migrate && .venv/bin/python manage.py seed_ds_group)
+NEW_DATABASE=false
+if [ ! -f "$BACKEND_DIR/db.sqlite3" ]; then NEW_DATABASE=true; fi
+(cd "$BACKEND_DIR" && .venv/bin/python manage.py migrate)
+if [ "$NEW_DATABASE" = true ] || [ "$SEED_DEMO" = true ]; then
+  printf 'Створення демо-каталогу…\n'
+  (cd "$BACKEND_DIR" && .venv/bin/python manage.py seed_ds_group)
+else
+  printf 'Демо-каталог не перезаписано. Для примусового оновлення: ./setup-and-run.sh --seed-demo\n'
+fi
 
 printf 'Підготовка фронтенду…\n'
 if [ ! -d "$FRONTEND_DIR/node_modules" ]; then (cd "$FRONTEND_DIR" && npm ci); fi
