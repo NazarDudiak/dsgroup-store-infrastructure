@@ -9,6 +9,7 @@ Completed in the current development cycle:
 - Atomic idempotent order handling, Ukrainian phone normalization and order rate limit.
 - Production-safe Django configuration guards and health endpoint.
 - Local launcher now preserves manual catalogue edits by not reseeding existing databases.
+- Demo catalogue was professionally revised so each of the 11 visible subcategories has an actual product model and model-specific image references. Generic stock photos were removed from published products.
 
 Next decisions requiring the owner:
 
